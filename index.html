@@ -834,6 +834,17 @@
     <li><a href="/temoignages">Témoignages</a></li>
   </ul>
   <a href="https://calendar.app.google/B3XdWRfCNJXopfyN7" target="_blank" class="nav-cta">Réserver un appel</a>
+<button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="/">Accueil</a>
+    <a href="#apropos">À propos</a>
+    <a href="#coaching">Coaching co-active</a>
+    <a href="/offre">Mon offre</a>
+    <a href="/temoignages">Témoignages</a>
+    <a href="https://calendar.app.google/B3XdWRfCNJXopfyN7" target="_blank" class="nav-mobile-cta">Réserver un appel</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1095,5 +1106,21 @@
   <div style="font-size:12px; font-style:italic; color:rgba(255,255,255,0.2);">kokolawson.com</div>
 </footer>
 
+<script>
+function toggleMenu() {
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  if (!btn.contains(e.target) && !menu.contains(e.target)) {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  }
+});
+</script>
 </body>
 </html>
