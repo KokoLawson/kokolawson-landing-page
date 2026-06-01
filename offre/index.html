@@ -747,6 +747,69 @@
     .bio-card { position: static; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
   }
+ /* ── HAMBURGER NAV MOBILE ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    background: none;
+    border: none;
+    z-index: 200;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--navy);
+    border-bottom: 2px solid var(--gold);
+    padding: 24px 6%;
+    z-index: 99;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a {
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: color 0.2s;
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; }
+  .nav-mobile-menu a:hover { color: var(--white); }
+  .nav-mobile-menu .nav-mobile-cta {
+    margin-top: 16px;
+    background: var(--gold);
+    color: var(--navy) !important;
+    text-align: center;
+    padding: 14px !important;
+    font-size: 12px !important;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: none !important;
+  }
+  @media (max-width: 960px) {
+    .nav-hamburger { display: flex; }
+    .nav-cta { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -755,6 +818,17 @@
 <nav>
   <a href="/" class="nav-logo" style="text-decoration:none;">Koko Lawson Adoté <span>·</span> De l'Expert au Leader</a>
   <a href="/" style="font-size:13px; font-weight:400; color:rgba(255,255,255,0.6); text-decoration:none; margin-right:16px; letter-spacing:0.03em; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:2px;">← Accueil</a><a href="#contact" class="nav-cta">Réserver mon diagnostic</a>
+<button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="/">Accueil</a>
+    <a href="/#apropos">À propos</a>
+    <a href="/#coaching">Coaching co-active</a>
+    <a href="/offre">Mon offre</a>
+    <a href="/temoignages">Témoignages</a>
+    <a href="https://calendar.app.google/B3XdWRfCNJXopfyN7" target="_blank" class="nav-mobile-cta">Réserver un appel</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1160,5 +1234,21 @@
   </div>
 </footer>
 
+<script>
+function toggleMenu() {
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  if (!btn.contains(e.target) && !menu.contains(e.target)) {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  }
+});
+</script>
 </body>
 </html>
