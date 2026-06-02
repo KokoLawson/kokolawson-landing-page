@@ -1135,32 +1135,6 @@ document.addEventListener('click', function(e) {
   </div>
 </div>
 
-<script>
-(function() {
-  if (sessionStorage.getItem('popupShown')) return;
-  let timer = setTimeout(function() {
-    sessionStorage.setItem('popupShown', '1');
-    document.getElementById('exitPopup').style.display = 'flex';
-  }, 30000);
-
-  document.addEventListener('mousemove', function() {
-    clearTimeout(timer);
-    timer = setTimeout(function() {
-      if (!sessionStorage.getItem('popupShown')) {
-        sessionStorage.setItem('popupShown', '1');
-        document.getElementById('exitPopup').style.display = 'flex';
-      }
-    }, 30000);
-  });
-})();
-
-function closePopup() {
-  document.getElementById('exitPopup').style.display = 'none';
-}
-
-document.getElementById('exitPopup').addEventListener('click', function(e) {
-  if (e.target === this) closePopup();
-});
 </script>
 </body>
 </html>
