@@ -1054,14 +1054,19 @@ document.addEventListener('click', function(e) {
 <script>
 (function() {
   if (sessionStorage.getItem('popupShown')) return;
-  let triggered = false;
-  document.addEventListener('mouseleave', function(e) {
-    if (e.clientY <= 0 && !triggered) {
-      triggered = true;
-      sessionStorage.setItem('popupShown', '1');
-      const popup = document.getElementById('exitPopup');
-      popup.style.display = 'flex';
-    }
+  let timer = setTimeout(function() {
+    sessionStorage.setItem('popupShown', '1');
+    document.getElementById('exitPopup').style.display = 'flex';
+  }, 30000);
+
+  document.addEventListener('mousemove', function() {
+    clearTimeout(timer);
+    timer = setTimeout(function() {
+      if (!sessionStorage.getItem('popupShown')) {
+        sessionStorage.setItem('popupShown', '1');
+        document.getElementById('exitPopup').style.display = 'flex';
+      }
+    }, 30000);
   });
 })();
 
